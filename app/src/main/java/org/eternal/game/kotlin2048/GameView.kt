@@ -18,16 +18,23 @@ const val VIEW_SIZE = BACKGROUND_SIZE
 
 class GameView(context: Context) : BaseView(context) {
 
-    val background = object : ViewComponent(this) {
-        override fun onDraw(canvas: Canvas?) {
-            super.onDraw(canvas)
-            paint.color = 0xFFBDAE9C.toInt()
-            canvas?.drawRoundRect(0F, 0F, BACKGROUND_SIZE, BACKGROUND_SIZE, BACKGROUND_RADIUS, BACKGROUND_RADIUS, paint)
-        }
-    }
-
+    // Init background
     init {
-        components["background"] = background
+        components["background"] = object : ViewComponent(this) {
+            override fun onDraw(canvas: Canvas?) {
+                super.onDraw(canvas)
+                paint.color = 0xFFBDAE9C.toInt()
+                canvas?.drawRoundRect(0F, 0F, BACKGROUND_SIZE, BACKGROUND_SIZE, BACKGROUND_RADIUS, BACKGROUND_RADIUS, paint)
+                paint.color = 0xFFD6CEC5.toInt()
+                for (x in 1..4) {
+                    for (y in 1..4) {
+                        val dx = GAP * x + RECT_UNIT_SIZE * (x - 1)
+                        val dy = GAP * y + RECT_UNIT_SIZE * (y - 1)
+                        canvas?.drawRoundRect(dx, dy, dx + RECT_UNIT_SIZE, dy + RECT_UNIT_SIZE, RECT_RADIUS, RECT_RADIUS, paint)
+                    }
+                }
+            }
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

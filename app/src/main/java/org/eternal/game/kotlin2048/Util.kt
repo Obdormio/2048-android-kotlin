@@ -2,6 +2,7 @@ package org.eternal.game.kotlin2048
 
 import android.content.Context
 import android.util.TypedValue
+import java.util.*
 
 fun Context.sp2px(spSize: Float): Float {
     return TypedValue.applyDimension(
@@ -17,4 +18,8 @@ fun Context.dp2px(dpSize: Float): Float {
             dpSize,
             resources.displayMetrics
     )
+}
+
+fun IntRange.random(): Int {
+    return Random().nextInt(endInclusive + 1 - start) + start
 }
