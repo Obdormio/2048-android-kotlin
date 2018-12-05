@@ -3,7 +3,6 @@ package org.eternal.game.kotlin2048
 import android.app.Activity
 import android.os.Bundle
 import android.widget.RelativeLayout
-import android.widget.TextView
 
 class MainActivity : Activity() {
 
@@ -14,16 +13,14 @@ class MainActivity : Activity() {
             setPadding(15, 15, 15, 15)
         }
 
-        val text = TextView(this@MainActivity).apply {
-            text = "Hello World"
-        }
-        val textParam = RelativeLayout.LayoutParams(
+        val gameView = GameView(this@MainActivity)
+        val gameViewParam = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         ).apply {
             addRule(RelativeLayout.CENTER_IN_PARENT)
         }
-        relativeLayout.addView(text, textParam)
+        relativeLayout.addView(gameView, gameViewParam)
 
         setContentView(relativeLayout)
     }
