@@ -10,3 +10,11 @@ fun Context.sp2px(spSize: Float): Float {
             resources.displayMetrics
     )
 }
+
+fun Context.dp2px(dpSize: Float): Float {
+    return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dpSize,
+            resources.displayMetrics
+    )
+}
