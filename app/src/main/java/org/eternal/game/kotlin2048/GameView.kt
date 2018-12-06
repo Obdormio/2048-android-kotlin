@@ -37,6 +37,11 @@ class GameView(context: Context) : BaseView(context) {
         }
     }
 
+    // Init Rect View Manager
+    init {
+        components["unitManager"] = UnitManager(this@GameView)
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         setMeasuredDimension(VIEW_SIZE.toInt(), VIEW_SIZE.toInt())
     }

@@ -3,6 +3,7 @@ package org.eternal.game.kotlin2048
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.RelativeLayout
@@ -19,7 +20,13 @@ class MainActivity : Activity() {
             setBackgroundColor(Color.BLACK)
         }
 
-        val gameView = GameView(this@MainActivity)
+        val gameView = GameView(this@MainActivity).apply {
+            setOnClickListener {
+                val unitManager = components["unitManager"] as UnitManager
+                val (x, y) = unitManager.getOneUnusedPosition()
+                unitManager.addUnit()
+            }
+        }
         val gameViewParam = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
