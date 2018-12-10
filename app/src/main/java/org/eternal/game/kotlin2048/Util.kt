@@ -23,3 +23,8 @@ fun Context.dp2px(dpSize: Float): Float {
 fun IntRange.random(): Int {
     return Random().nextInt(endInclusive + 1 - start) + start
 }
+
+fun Any.Log(message: String = "") {
+    val msg = if (message == "") this.toString() else message
+    android.util.Log.i("fuck", msg)
+}

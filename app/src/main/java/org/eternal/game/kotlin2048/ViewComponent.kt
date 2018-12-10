@@ -13,4 +13,8 @@ open class ViewComponent(protected val view: BaseView) {
 
     open fun onDraw(canvas: Canvas?) {
     }
+
+    fun refresh() {
+        view.invalidate()
+    }
 }

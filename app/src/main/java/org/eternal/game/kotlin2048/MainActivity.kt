@@ -3,7 +3,7 @@ package org.eternal.game.kotlin2048
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.widget.RelativeLayout
@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Init Content view
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -20,13 +21,9 @@ class MainActivity : Activity() {
             setBackgroundColor(Color.BLACK)
         }
 
-        val gameView = GameView(this@MainActivity).apply {
-            setOnClickListener {
-                val unitManager = components["unitManager"] as UnitManager
-                val (x, y) = unitManager.getOneUnusedPosition()
-                unitManager.addUnit()
-            }
-        }
+        val gameView = GameView(this@MainActivity)
+        val gameManager = gameView.unitManager
+
         val gameViewParam = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -36,5 +33,8 @@ class MainActivity : Activity() {
         relativeLayout.addView(gameView, gameViewParam)
 
         setContentView(relativeLayout)
+
+        // Start Game
+        gameManager.start()
     }
 }

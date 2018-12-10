@@ -38,11 +38,16 @@ class GameView(context: Context) : BaseView(context) {
     }
 
     // Init Rect View Manager
+    val unitManager = UnitManager(this@GameView)
     init {
-        components["unitManager"] = UnitManager(this@GameView)
+        components["unitManager"] = unitManager
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         setMeasuredDimension(VIEW_SIZE.toInt(), VIEW_SIZE.toInt())
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
     }
 }
